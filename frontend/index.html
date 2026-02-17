@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tamil Movie Ticket Booking</title>
+  <style>
+    body {
+      background: #111;
+      color: white;
+      font-family: Arial;
+      text-align: center;
+    }
+
+    .movie-card {
+      display: inline-block;
+      background: #222;
+      margin: 20px;
+      padding: 15px;
+      width: 250px;
+      border-radius: 10px;
+    }
+
+    img {
+      width: 100%;
+      height: 350px;
+      border-radius: 10px;
+    }
+
+    button {
+      padding: 8px 15px;
+      background: red;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🎬 Tamil Movie Ticket Booking</h1>
+
+<div id="movies"></div>
+
+<script>
+fetch("http://localhost:5000/movies")
+  .then(res => res.json())
+  .then(data => {
+    const container = document.getElementById("movies");
+
+    data.forEach(movie => {
+      const card = document.createElement("div");
+      card.className = "movie-card";
+
+      card.innerHTML = `
+        <img src="${movie.poster}" />
+        <h2>${movie.name}</h2>
+        <p>Available Seats: ${movie.seats}</p>
+        <button>Book Now</button>
+      `;
+
+      container.appendChild(card);
+    });
+  });
+</script>
+
+</body>
+</html>
+
