@@ -5,7 +5,7 @@ pipeline {
 
         stage('Clone') {
             steps {
-                git 'ghttps://github.com/chathri888/movie-ticket-app.git'
+                git 'https://github.com/chathri888/movie-ticket-app.git'
             }
         }
 
