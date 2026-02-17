@@ -1,0 +1,81 @@
+body {
+    margin: 0;
+    font-family: Arial;
+    background-color: #111;
+    color: white;
+}
+
+/* LOGIN */
+.login-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-box {
+    background: #222;
+    padding: 40px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 10px;
+    background: red;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+/* HOME */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background: black;
+}
+
+.movies {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.card {
+    background: #222;
+    margin: 15px;
+    padding: 15px;
+    width: 200px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.card button {
+    margin-top: 10px;
+    padding: 8px;
+    background: red;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.error {
+    color: red;
+}
