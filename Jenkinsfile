@@ -3,13 +3,13 @@ pipeline {
 
     stages {
 
-        stage('Clone Code') {
+        stage('Clone') {
             steps {
-                git 'https://github.com/chathri888/movie-ticket-app.git'
+                git 'https://github.com/YOUR_USERNAME/movie-ticket-app.git'
             }
         }
 
-        stage('Build Backend Image') {
+        stage('Build Backend') {
             steps {
                 sh 'docker build -t movie-backend ./backend'
             }
@@ -29,7 +29,7 @@ pipeline {
             }
         }
 
-        stage('Run Database') {
+        stage('Run DB') {
             steps {
                 sh '''
                 docker run -d \
@@ -37,6 +37,7 @@ pipeline {
                 --network movie-network \
                 -e MYSQL_ROOT_PASSWORD=root \
                 -e MYSQL_DATABASE=moviedb \
+                -v movie-data:/var/lib/mysql \
                 mysql:8
                 '''
             }
@@ -53,4 +54,20 @@ pipeline {
                 '''
             }
         }
+
+        stage('Run Frontend') {
+            steps {
+                sh '''
+                docker run -d \
+                --name movie-frontend \
+                --network movie-network \
+                -p 3000:80 \
+                -v $WORKSPACE/frontend:/usr/share/nginx/html \
+                nginx
+                '''
+            }
+        }
+    }
+}
+
 
