@@ -15,27 +15,32 @@ pipeline {
             }
         }
 
-        stage('Remove Old Containers') {
-            steps {
-                sh 'docker rm -f movie-db || true'
-                sh 'docker rm -f movie-backend || true'
-                sh 'docker rm -f movie-frontend || true'
-            }
-        }
+       stage('Cleanup Containers') {
+    steps {
+        sh '''
+        docker rm -f movie-db || true
+        docker rm -f movie-backend || true
+        docker rm -f movie-frontend || true
+        sleep 5
+        '''
+    }
+}
 
         stage('Run DB') {
-            steps {
-                sh '''
-                docker run -d \
-                --name movie-db \
-                --network movie-network \
-                -e MYSQL_ROOT_PASSWORD=root \
-                -e MYSQL_DATABASE=moviedb \
-                -v movie-data:/var/lib/mysql \
-                mysql:8
-                '''
-            }
-        }
+    steps {
+        sh '''
+        docker rm -f movie-db 2>/dev/null || true
+        docker run -d \
+        --name movie-db \
+        --network movie-network \
+        -e MYSQL_ROOT_PASSWORD=root \
+        -e MYSQL_DATABASE=moviedb \
+        -v movie-data:/var/lib/mysql \
+        mysql:8
+        '''
+    }
+}
+
 
         stage('Run Backend') {
             steps {
