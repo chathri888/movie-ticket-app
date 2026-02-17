@@ -3,12 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Clone') {
-            steps {
-                git 'https://github.com/chathri888/movie-ticket-app.git'
-            }
-        }
-
         stage('Build Backend') {
             steps {
                 sh 'docker build -t movie-backend ./backend'
@@ -69,5 +63,3 @@ pipeline {
         }
     }
 }
-
-
