@@ -34,11 +34,7 @@
       margin-top: 10px;
     }
   </style>
-  <script src="script.js"></script>
-<script>
-checkAuth();
-loadMovies();
-</script>
+ 
 <head>
 <body>
 
@@ -67,7 +63,11 @@ fetch("http://localhost:5000/movies")
     });
   });
 </script>
-
+  <script>
+if(localStorage.getItem("isLoggedIn") === "true"){
+    window.location.href = "home.html";
+}
+</script>
 </body>
 </html>
 
